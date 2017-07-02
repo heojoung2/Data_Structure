@@ -31,6 +31,7 @@ public:
 	void Push(Data<T> *data);
 	Data<T> Pop();
 	Data<T> Peek();
+	int Get_length();
 	void Display();
 };
 
@@ -116,6 +117,12 @@ Data<T> Stack<T>::Peek()
 	}
 	else
 		cout << "Peek ¿À·ù" << endl;
+}
+
+template <typename T>
+int Stack<T>::Get_length()
+{
+	return length;
 }
 
 template <typename T>
