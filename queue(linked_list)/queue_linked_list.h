@@ -21,7 +21,9 @@ template <typename T>
 class Queue
 {
 private:
-	Data<T> *head;
+	Data<T> *front;
+	Data<T> *rear;
+	int length;
 
 public:
 	Queue();
@@ -62,21 +64,26 @@ Data<T> *Data<T>::Get_link()
 
 template <typename T>
 Queue<T>::Queue()
+	:length(0)
 {
-	head = new Data<T>;
-	head->Set_link(NULL);
+	front = new Data<T>;
+	rear = new Data<T>;
+
+	front->Set_link(NULL);
+	rear->Set_link(NULL);
 }
 
 template <typename T>
 Queue<T>::~Queue()
 {
-	delete head;
+	delete front;
+	delete rear;
 }
 
 template <typename T>
 bool Queue<T>::Is_empty()
 {
-	if (head->Get_link() == NULL)
+	if (front->Get_link() == NULL)
 		return true;
 	return false;
 }
@@ -84,11 +91,17 @@ bool Queue<T>::Is_empty()
 template <typename T>
 void Queue<T>::Enqueue(Data<T> *_data)
 {
-	Data<T> *node = head;
-
-	while (node->Get_link() != NULL)
-		node = node->Get_link();
-	node->Set_link(_data);
+	if (length == 0)
+	{
+		front->Set_link(_data);
+		rear->Set_link(_data);
+	}
+	else
+	{
+		rear->Get_link()->Set_link(_data);
+		rear->Set_link(_data);
+	}
+	length++;
 }
 
 template <typename T>
@@ -96,12 +109,15 @@ Data<T> Queue<T>::Dequeue()
 {
 	if (!Is_empty())
 	{
-		Data<T> *result = head->Get_link();
+		Data<T> *result = front->Get_link();
 
 		if (result->Get_link() == NULL)
-			head->Set_link(NULL);
+		{
+			front->Set_link(NULL);
+			rear->Set_link(NULL);
+		}
 		else
-			head->Set_link(result->Get_link());
+			front->Set_link(result->Get_link());
 
 		return *result;
 	}
@@ -117,7 +133,7 @@ Data<T> Queue<T>::Peek()
 {
 	if (!Is_empty())
 	{
-		Data<T> *result = head->Get_link();
+		Data<T> *result = front->Get_link();
 		return *result;
 	}
 	else
@@ -130,7 +146,7 @@ Data<T> Queue<T>::Peek()
 template <typename T>
 void Queue<T>::Display()
 {
-	Data<T> *node = head->Get_link();
+	Data<T> *node = front->Get_link();
 
 	if (node == NULL)
 		cout << "empty queue" << endl;
