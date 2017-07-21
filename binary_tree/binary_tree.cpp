@@ -92,7 +92,7 @@ void Tree::Postorder(Node *_node)
 	}
 }
 
-int Tree::Count_left_node(Node *_node)
+int Tree::Count_leaf_node(Node *_node)
 {
 	int result = 0;
 
@@ -102,8 +102,8 @@ int Tree::Count_left_node(Node *_node)
 			result = 1;
 		else if (_node != NULL)
 		{
-			result += Count_left_node(_node->Get_left_node());
-			result += Count_left_node(_node->Get_right_node());
+			result += Count_leaf_node(_node->Get_left_node());
+			result += Count_leaf_node(_node->Get_right_node());
 		}
 	}
 	return result;
