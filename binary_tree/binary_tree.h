@@ -34,7 +34,7 @@ public:
 	void Preorder(Node *_node);
 	void Inorder(Node *_node);
 	void Postorder(Node *_node);
-	int Count_left_node(Node *_node);
+	int Count_leaf_node(Node *_node);
 	int Height(Node *_node);
 };
 
