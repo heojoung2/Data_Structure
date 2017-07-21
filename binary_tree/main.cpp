@@ -22,7 +22,7 @@ int main()
 	tree.Postorder(&node1);
 	cout << endl;
 
-	cout << "left node : " << tree.Count_left_node(&node1) << endl;
+	cout << "left node : " << tree.Count_leaf_node(&node1) << endl;
 	cout << "height : " << tree.Height(&node1) << endl;
 
 
