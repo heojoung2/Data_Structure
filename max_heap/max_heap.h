@@ -18,4 +18,4 @@ public:
 	void Display();
 };
 
-#endif _MAX_HEAP
+#endif _MAX_HEAP_
