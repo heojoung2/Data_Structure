@@ -92,6 +92,25 @@ void Tree::Postorder(Node *_node)
 	}
 }
 
+void Tree::Levelorder(Node *_node)
+{
+	queue<Node*> queue;
+	queue.push(_node);
+	Node* data;
+
+	while (!queue.empty())
+	{
+		data = queue.front();
+		cout << data->Get_data() << " ";
+		queue.pop();
+
+		if (data->Get_left_node() != NULL)
+			queue.push(data->Get_left_node());
+		if (data->Get_right_node() != NULL)
+			queue.push(data->Get_right_node());
+	}
+}
+
 int Tree::Count_leaf_node(Node *_node)
 {
 	int result = 0;
@@ -111,8 +130,8 @@ int Tree::Count_leaf_node(Node *_node)
 
 int Tree::Height(Node *_node)
 {
-	int result=0;
-	
+	int result = 0;
+
 	if (_node != NULL)
 	{
 		if (_node->Get_left_node() == NULL && _node->Get_right_node() == NULL)

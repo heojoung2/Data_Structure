@@ -20,6 +20,8 @@ int main()
 	tree.Inorder(&node1);
 	cout << endl << "Postorder : ";
 	tree.Postorder(&node1);
+	cout << endl << "Levelorder : ";
+	tree.Levelorder(&node1);
 	cout << endl;
 
 	cout << "left node : " << tree.Count_leaf_node(&node1) << endl;

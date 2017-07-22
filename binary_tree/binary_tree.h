@@ -2,6 +2,7 @@
 #define _BINARY_TREE_
 
 #include<iostream>
+#include<queue>
 using namespace std;
 
 class Node
@@ -34,6 +35,7 @@ public:
 	void Preorder(Node *_node);
 	void Inorder(Node *_node);
 	void Postorder(Node *_node);
+	void Levelorder(Node *_node);
 	int Count_leaf_node(Node *_node);
 	int Height(Node *_node);
 };
